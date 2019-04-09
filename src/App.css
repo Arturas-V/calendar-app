@@ -1,0 +1,27 @@
+.calendarContainer {
+	width: 700px;
+	margin: 20px auto;
+	border: 1px solid grey;
+}
+
+.calendarHeaderDay {
+	width: 100px;
+	display: inline-block;
+	text-align: center;
+	box-sizing: border-box;
+	border: 2px solid grey;
+}
+
+.calendarBodyDayBlank {
+	background-color: #ddd;
+}
+
+.calendarBodyDay {
+	margin: 0;
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	border: 2px solid grey;
+	box-sizing: border-box;
+	vertical-align: top;
+}
