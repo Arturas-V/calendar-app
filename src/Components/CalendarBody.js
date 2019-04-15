@@ -1,4 +1,5 @@
 import React from "react";
+import CalendarBodyDay from "./CalendarBodyDay.js";
 
 class CalendarBody extends React.Component {
 
@@ -7,31 +8,23 @@ class CalendarBody extends React.Component {
 		const fullYear = currentDate.getFullYear();
 		const getMonth = currentDate.getMonth();
 
-  		const numberOfDays = new Date(fullYear, getMonth+1, 0).getDate();
+  		const numberOfDays = new Date(fullYear, getMonth+1, 0).getDate()+1;
   		const firstDay = new Date(fullYear, getMonth, 1).getDay();
 
   		let days = [];
-  		let key = 0;
-  		let remainingDays = 35;
+		  
+		for(let i = 0; i < 35; i++) {
 
-  		if(firstDay < 7) {
-  			for(let i = 0; i < firstDay; i++) {
-	  			days.push(<div key={key} className="calendarBodyDay calendarBodyDayBlank"> </div>);
-	  				key++;
-	  				remainingDays--;
-	  		}
-  		}  		
+			let isBlank = false;
+			let num = i;
 
-  		for(let i = 0; i < numberOfDays; i++) {
-  			days.push(<div key={key} className="calendarBodyDay">{i+1}</div>);
-  			key++;
-  			remainingDays--;
-  		}
+			if((firstDay < 7 && firstDay > i) || (firstDay + numberOfDays <= i+1)) {
+				isBlank = true;
+				num = 0;
+			}
 
-  		for(let i = 0; i < remainingDays; i++) {
-  			days.push(<div key={key} className="calendarBodyDay calendarBodyDayBlank"> </div>);
-  			key++;
-  		}
+			days.push(<CalendarBodyDay key={i} num={num} blank={isBlank}/>);
+		}
 
   		return days;
 	}
