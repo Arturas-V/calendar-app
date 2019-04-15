@@ -25,11 +25,12 @@ export default function(state = initialState, action) {
 
 		case ADD_REMINDER:
 
-			// state.remindersList.push(action.payload);
+			let newArray = state.remindersList.slice()
+				newArray.splice(action.index, 0, action.payload)
 
 			return {
 				...state,
-				remindersList: action.payload
+				remindersList: newArray
 			}
 
 		case DELETE_REMINDER:

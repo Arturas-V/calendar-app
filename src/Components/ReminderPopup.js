@@ -25,17 +25,13 @@ class ReminderPopup extends React.Component {
 		const reminderTime = this.saveReminderTime.getTime();
 		localStorage.setItem('reminder ' + reminderTime, reminderTime);
 		this.popupCloseClickHandler();
-		const st = this.props.remindersList;
-		st.push(reminderTime);
-		console.log("push ", st);
-		this.props.addReminder([1234]);
+		this.props.addReminder(reminderTime);
 	}
 
 	/*
 	 *  render DOM
 	 */
 	render() {
-		console.log("render popup ", this.props);
 		const currentDate = new Date();
 		const currentday = currentDate.getDate();
 		const currentTime = currentDate.getTime();
@@ -57,13 +53,11 @@ class ReminderPopup extends React.Component {
 ReminderPopup.propType = {
 	closeReminderPopup: PropTypes.func.isRequired,
 	addReminder: PropTypes.func.isRequired,
-	newReminder: PropTypes.number,
-	remindersList: PropTypes.array
+	newReminder: PropTypes.number
 };
 
 const mapStataeToProps = state => ({
-	newReminder: state.reminders.newReminder,
-	remindersList: state.reminders.remindersList
+	newReminder: state.reminders.newReminder
 });
 
 export default connect (mapStataeToProps, { closeReminderPopup, addReminder })(ReminderPopup);
